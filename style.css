@@ -10,8 +10,8 @@ body {
 header {
     background-color: white;
     position: sticky;
-    top: 0;
-    padding: 0;
+    top: 0cm;
+    padding: 0cm;
     text-align: center;
 }
 
@@ -71,10 +71,15 @@ p {
 }
 
 .hero{
-    background: linear-gradient(90deg, white 3%, #9696de 100%);
+    background: -webkit-linear-gradient(90deg,#9696de 3%, WHITE 100%);
     padding: 2em;
     text-align: center;
     margin-bottom: 1em;
+}
+
+.Hero .p {
+    padding: 0.5em;
+    margin: 0cm;
 }
 
 .property-card {
@@ -92,4 +97,98 @@ p {
     width: 100%;
     height: 200px;
     object-fit: cover;
+}
+
+.property-type {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    margin-bottom: 0.5em;
+}
+
+.property-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.property-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark-text);
+}
+
+.property-location {
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.property-details {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.property-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.property-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 1rem 0;
+}
+
+.property-footer {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.property-footer .btn {
+    flex: 1;
+    padding: 0.6rem;
+    font-size: 0.9rem;
+}
+
+.favorite-btn {
+    background-color: var(--light-bg);
+    color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    flex: 0 0 auto;
+}
+
+.alert {
+    padding: 1em;
+    border-radius: 4px;
+    margin-bottom: 1em;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.footer {
+    background-color: var(--dark-text);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.footer p {
+    color: var(--white);
+    margin: 0;
 }
