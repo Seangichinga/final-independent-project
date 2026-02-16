@@ -47,6 +47,27 @@
                         <label>Max Price</label>
                         <input type="number" id="maxPrice" placeholder="Max" class="filter-input">
                     </div>
+                     <div class="filter-group">
+                        <label>Type</label>
+                        <select id="propertyType" class="filter-input">
+                            <option value="">All =</option>
+                            <option value="House">Stand Alone</option>
+                            <option value="Apartment">Condo</option>
+                            <option value="Condo">Townhouse</option>
+                            <option value="Villa">apartment</option>
+                        </select>
+                    </div>
+                    <button id="filterBtn" class="btn btn-secondary">Apply Filters</button>
+                    <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                </div>
+            </div>
     </main>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initApp();
+            displayBrowsePage();
+        });
+    </script>
 </body>
 </html>
