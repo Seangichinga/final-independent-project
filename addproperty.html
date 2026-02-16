@@ -30,7 +30,128 @@
             </div>
         
             <div id="errorMessage" class="alert alert-error" style="display: none;"></div>
+<form id="propertyForm" class="property-form">
 
+                <div class="form-group">
+                    <label for="title">Property Title *</label>
+                    <input 
+                        type="text" 
+                        id="title" 
+                        placeholder="e.g: Beautiful 3BR House in Downtown" 
+                        required
+                    >
+                    <span class="error" id="titleError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location *</label>
+                    <input 
+                        type="text" 
+                        id="location" 
+                        placeholder="e.g: Downtown, New York" 
+                        required
+                    >
+                    <span class="error" id="locationError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="propertyTypeSelect">Property Type *</label>
+                    <select id="propertyTypeSelect" required>
+                        <option value="">Select a type</option>
+                        <option value="House">Stand Alone</option>
+                        <option value="Apartment">Condo</option>
+                        <option value="Condo">Townhouse</option>
+                        <option value="Villa">Apartments</option>
+                    </select>
+                    <span class="error" id="propertyTypeError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="bedrooms">Bedrooms *</label>
+                    <input 
+                        type="number" 
+                        id="bedrooms" 
+                        placeholder="e.g: 3" 
+                        min="1" 
+                        required
+                    >
+                    <span class="error" id="bedroomsError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="bathrooms">Bathrooms *</label>
+                    <input 
+                        type="number" 
+                        id="bathrooms" 
+                        placeholder="e.g: 2" 
+                        min="1" 
+                        required
+                    >
+                    <span class="error" id="bathroomsError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="sqft">Square Feet *</label>
+                    <input 
+                        type="number" 
+                        id="sqft" 
+                        placeholder="e.g: 2500" 
+                        min="1" 
+                        required
+                    >
+                    <span class="error" id="sqftError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price ($) *</label>
+                    <input 
+                        type="number" 
+                        id="price" 
+                        placeholder="e.g: 250000" 
+                        required
+                    >
+                    <span class="error" id="priceError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="imageUrl">Image URL *</label>
+                    <input 
+                        type="url" 
+                        id="imageUrl" 
+                        placeholder="e.g: https://example.com/image.jpg" 
+                        required
+                    >
+                    <span class="error" id="imageUrlError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description *</label>
+                    <textarea 
+                        id="description" 
+                        placeholder="Describe the property, amenities, and features..." 
+                        rows="5" 
+                        required
+                    ></textarea>
+                    <span class="error" id="descriptionError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="ownerName">Your Name *</label>
+                    <input 
+                        type="text" 
+                        id="ownerName" 
+                        placeholder="Your name" 
+                        required
+                    >
+                    <span class="error" id="ownerNameError"></span>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Add Property</button>
+                    <button type="reset" class="btn btn-secondary">Clear Form</button>
+                </div>
+            </form>
+        </div>
         </main>
 <footer class="footer">
         <p>2026 Nexus Properties. All rights reserved. | Built with HTML, CSS & JavaScript</p>
@@ -42,8 +163,7 @@
             initApp();
             setupAddPropertyForm();
         });
+
     </script>
-
-
 </body>
 </html>
