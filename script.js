@@ -79,3 +79,42 @@ function setupEventListeners() {
         propertyForm.addEventListener('submit', handleFormSubmit);
     }
 }
+
+function setupModalListeners() {
+    const modal = document.getElementById('detailsModal');
+    const closeBtn = document.querySelector('.close');
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    }
+}
+
+function displayBrowsePage() {
+    displayProperties(allProperties);
+}
+function displayFavoritesPage() {
+     const favoriteProperties = allProperties.filter(p => favorites.includes(p.id));
+    const grid = document.getElementById('favoritesGrid');
+    const emptyMsg = document.getElementById('emptyFavorites');
+    const countSpan = document.getElementById('favoritesCount');
+
+    if (countSpan) {
+        countSpan.textContent = favoriteProperties.length;
+    }
+
+    if (favoriteProperties.length === 0) {
+        if (grid) grid.innerHTML = '';
+        if (emptyMsg) emptyMsg.style.display = 'block';
+        return;
+    }
+
+    if (emptyMsg) emptyMsg.style.display = 'none';
+    displayProperties(favoriteProperties);
+}
+
