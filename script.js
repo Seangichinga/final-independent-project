@@ -61,4 +61,21 @@ function setupEventListeners() {
             if (e.key === 'Enter') handleSearch();
         });
     }
+    // Filter 
+    const filterBtn = document.getElementById('filterBtn');
+    if (filterBtn) {
+        filterBtn.addEventListener('click', handleFilter);
+    }
+
+    // Reset button
+    const resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', handleReset);
+    }
+
+    // Add property 
+    const propertyForm = document.getElementById('propertyForm');
+    if (propertyForm) {
+        propertyForm.addEventListener('submit', handleFormSubmit);
+    }
 }
