@@ -160,7 +160,7 @@ if (noMsg) noMsg.style.display = 'none';
     });
 }
 
-fuction handleSearch() {
+function handleSearch() {
     const term = document.getElementById('searchInput').value.toLowerCase();
     const filtered = allProperties.filter(p =>
         p.title.toLowerCase().includes(term) ||
@@ -223,4 +223,35 @@ function handleFormSubmit(e) {
 function validateForm() {
     let isValid = true;
     clearErrors();
+
+    const checks = [
+        ['title', 'Title must be 6+ characters', (v) => v.length >= 6],
+        ['price', 'Price must be positive', (v) => v > 0],
+        ['location', 'Location must be 3+ characters', (v) => v.length >= 3],
+        ['description', 'Description must be 10+ characters', (v) => v.length >= 10],
+    ];
+
+    return checks.every(([id, msg, check]) => {
+        const val = document.getElementById(id).value;
+        if (!val || !check(val)) {
+            showError(id + 'Error', msg);
+            return false;
+        }
+        return true;
+    });
+}
+
+function showError(id, msg) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.textContent = msg;
+        el.style.display = 'block';
+    }
+}
+
+function clearErrors() {
+    document.querySelectorAll('.error').forEach(el => {
+        el.textContent = '';
+        el.style.display = 'none';
+    });
 }
