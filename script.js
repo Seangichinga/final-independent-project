@@ -255,3 +255,35 @@ function clearErrors() {
         el.style.display = 'none';
     });
 }
+
+function viewPropertyDetails(id) {
+    window.location.href = `property-details.html?id=${id}`;
+}
+
+function displayProperttyDetails() {
+    const id = new URLSearchParams(window.location.search).get('id');
+    const prop = getPropertyById(parseInt(id));
+    const container = document.getElementById('propertyDetails');
+    if (!prop || !container)
+        container.innerHTML = '<p>Property not found.</p>';
+        return;
+
+    container.innerHTML = `
+        <h2>${prop.title}</h2>
+        <p><strong>Location:</strong> ${prop.location}</p>
+        <p><strong>Type:</strong> ${prop.type}</p>
+        <p><strong>Bedrooms:</strong> ${prop.bedrooms}</p>
+        <p><strong>Bathrooms:</strong> ${prop.bathrooms}</p>
+        <p><strong>Square Feet:</strong> ${prop.sqft}</p>
+        <p><strong>Price:</strong> $${prop.price.toLocaleString()}</p>
+        <img src="${prop.imageUrl}" alt="${prop.title}" class="property-image">
+        <p>${prop.description}</p>
+    `;
+}
+
+function toggleDetailsFavorite(propertyId) {
+    toggleFavorite(propertyId);
+    const btn = event.currentTarget;
+    if (btn) {
+        btn.classList.toggle('active');
+    }
