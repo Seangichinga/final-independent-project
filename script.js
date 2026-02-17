@@ -5,7 +5,7 @@ function initApp() {
     loadData();
     setupEventListeners();
 }
-
+// data management functions
 function loadData() {
     const storedProperties = localStorage.getItem('properties');
     const storedFavorites = localStorage.getItem('favorites');
@@ -39,3 +39,26 @@ function toggleFavorite(propertyId) {
     saveData();
 }
 
+function isFavorite(propertyId) {
+    return favorites.includes(propertyId);
+}
+
+function getPropertyById(propertyId) {
+    return allProperties.find(p => p.id === propertyId) || null;
+}
+
+// event listeners
+function setupEventListeners() {
+    //search
+    const searchBtn = document.getElementById('searchBtn');
+    if (searchBtn) {
+        searchBtn.addEventListener('click', handleSearch);
+    }
+
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSearch();
+        });
+    }
+}
