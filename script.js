@@ -99,22 +99,63 @@ function displayBrowsePage() {
     displayProperties(allProperties);
 }
 function displayFavoritesPage() {
-     const favoriteProperties = allProperties.filter(p => favorites.includes(p.id));
+     const favoriteProps = allProperties.filter(p => favorites.includes(p.id));
     const grid = document.getElementById('favoritesGrid');
     const emptyMsg = document.getElementById('emptyFavorites');
     const countSpan = document.getElementById('favoritesCount');
 
     if (countSpan) {
-        countSpan.textContent = favoriteProperties.length;
+        countSpan.textContent = favoriteProps.length;
     }
 
-    if (favoriteProperties.length === 0) {
+    if (favoriteProps.length === 0) {
         if (grid) grid.innerHTML = '';
         if (emptyMsg) emptyMsg.style.display = 'block';
         return;
     }
 
+
     if (emptyMsg) emptyMsg.style.display = 'none';
-    displayProperties(favoriteProperties);
+    displayProperties(favoriteProps);
 }
 
+function displayProperties(properties) {
+    const grid = document.getElementById('propertiesGrid') || document.getElementById('favoritesGrid');
+    const noMsg = document.getElementById('noProperties');
+
+    if (!grid) return;
+
+    if (properties.length === 0) {
+        grid.innerHTML = '';
+        if (noMsg) noMsg.style.display = 'block';
+        return;
+    }
+if (noMsg) noMsg.style.display = 'none';
+    grid.innerHTML = properties.map(p => `
+        <div class="property-card" data-id="${p.id}">
+            <img src="${p.imageUrl}" alt="${p.title}" class="property-image" 
+                 onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+            <div class="property-content">
+                <span class="property-type">${p.type}</span>
+                <h4 class="property-title">${p.title}</h4>
+                <p class="property-location">📍 ${p.location}</p>
+                <div class="property-details">
+                    <span>🛏️ ${p.bedrooms} bed</span>
+                    <span>🚿 ${p.bathrooms} bath</span>
+                    <span>📐 ${p.sqft} sqft</span>
+                </div>
+                <p class="property-price">$${parseInt(p.price).toLocaleString()}</p>
+                <div class="property-footer">
+                    <button class="btn btn-primary" onclick="viewPropertyDetails(${p.id})">View</button>
+                    <button class="btn favorite-btn ${isFavorite(p.id) ? 'active' : ''}" 
+                            onclick="toggleFav(${p.id}, event)">❤️</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    });
+}
