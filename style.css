@@ -45,6 +45,7 @@ h1.logo {
     font-size: 1.8em;
     color: black;
     text-align: center;
+    padding-right: 5cm;
 }
 
 .container {
@@ -53,7 +54,6 @@ h1.logo {
     padding: 2em;
     background-color: #8888bb;
     text-align: center;
-    color: white;
     opacity: 1;
     border-radius: 15px;
 }
@@ -74,6 +74,7 @@ h1.logo {
     gap: 1em;
     margin: 0;
     padding: 0;
+    align-items: right;
 }
 
 .nav-container {
@@ -117,13 +118,16 @@ p {
 }
 
 form {
-    background-color: white;
+    background-color: rgb(117, 41, 124);
     padding: 2em;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     max-width: 500px;
     margin: 0 auto 2em auto;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: left;
 }
 
 .property-card {
