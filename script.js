@@ -159,3 +159,68 @@ if (noMsg) noMsg.style.display = 'none';
         });
     });
 }
+
+fuction handleSearch() {
+    const term = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = allProperties.filter(p =>
+        p.title.toLowerCase().includes(term) ||
+        p.location.toLowerCase().includes(term)
+    );
+    displayProperties(filtered);
+}
+
+function handleFilter() {
+    const minPrice = parseInt(document.getElementById('minPrice').value) || 0;
+    const maxPrice = parseInt(document.getElementById('maxPrice').value) || Infinity;
+    const type = document.getElementById('propertyType').value;
+
+    const filtered = allProperties.filter(p =>
+        p.price >= minPrice &&
+        p.price <= maxPrice &&
+        (!type || p.type === type)
+    );
+    displayProperties(filtered);
+}
+
+function handleReset() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('minPrice').value = '';
+    document.getElementById('maxPrice').value = '';
+    document.getElementById('propertyType').value = '';
+    displayBrowsePage();
+}
+
+function handleFormSubmit(e) {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    const data = {
+        title: document.getElementById('title').value,
+        location: document.getElementById('location').value,
+        type: document.getElementById('propertyTypeSelect').value,
+        bedrooms: parseInt(document.getElementById('bedrooms').value),
+        bathrooms: parseInt(document.getElementById('bathrooms').value),
+        sqft: parseInt(document.getElementById('sqft').value),
+        price: parseInt(document.getElementById('price').value),
+        imageUrl: document.getElementById('imageUrl').value,
+        description: document.getElementById('description').value
+    };
+
+    addProperty(data);
+    e.target.reset();
+    clearErrors();
+
+    const msg = document.getElementById('successMessage');
+    if (msg) {
+        msg.style.display = 'block';
+        setTimeout(() => {
+            msg.style.display = 'none';
+        }, 3000);
+    }
+}
+
+function validateForm() {
+    let isValid = true;
+    clearErrors();
+}
