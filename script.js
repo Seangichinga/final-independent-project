@@ -80,21 +80,6 @@ function setupEventListeners() {
     }
 }
 
-function setupModalListeners() {
-    const modal = document.getElementById('detailsModal');
-    const closeBtn = document.querySelector('.close');
-
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeModal);
-    }
-
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-    }
-}
-
 function displayBrowsePage() {
     displayProperties(allProperties);
 }
@@ -255,54 +240,9 @@ function clearErrors() {
     });
 }
 
-function displayProperttyDetails() {
-    const id = new URLSearchParams(window.location.search).get('id');
-    const prop = getPropertyById(parseInt(id));
-    const container = document.getElementById('propertyDetails');
-    if (!prop || !container)
-        container.innerHTML = '<p>Property not found.</p>';
-        return;
-
-    container.innerHTML = `
-        <h2>${prop.title}</h2>
-        <p><strong>Location:</strong> ${prop.location}</p>
-        <p><strong>Type:</strong> ${prop.type}</p>
-        <p><strong>Bedrooms:</strong> ${prop.bedrooms}</p>
-        <p><strong>Bathrooms:</strong> ${prop.bathrooms}</p>
-        <p><strong>Square Feet:</strong> ${prop.sqft}</p>
-        <p><strong>Price:</strong> $${prop.price.toLocaleString()}</p>
-        <img src="${prop.imageUrl}" alt="${prop.title}" class="property-image">
-        <p>${prop.description}</p>
-    `;
-}
-
-function toggleDetailsFavorite(propertyId) {
-    toggleFavorite(propertyId);
-    const btn = event.target;
-    btn.classList.toggle('active');
-    btn.textContent = isFavorite(id) ? '❤️ Saved' : '❤️ Save';
-}
-
 function toggleFav(id, e) {
     toggleFavorite(id);
     e.target.classList.toggle('active');
 }
 
-function handleInquiry(e, id) {
-    e.preventDefault();
-    const form = e.target;
-    const [name, email, msg] = [...form.querySelectorAll('input, textarea')].map(el => el.value);
-
-    let inquiries = JSON.parse(localStorage.getItem('inquiries')) || [];
-    inquiries.push({
-        id: Date.now(),
-        propertyId: id,
-        propertyTitle: getPropertyById(id).title,
-        name, email, msg,
-        date: new Date().toLocaleString()
-    });
-    localStorage.setItem('inquiries', JSON.stringify(inquiries));
-
-    alert('Inquiry sent!');
-    form.reset();
-}
+document.addEventListener('DOMContentLoaded', initApp);
