@@ -146,7 +146,6 @@ if (noMsg) noMsg.style.display = 'none';
                 </div>
                 <p class="property-price">$${parseInt(p.price).toLocaleString()}</p>
                 <div class="property-footer">
-                    <button class="btn btn-primary" onclick="viewPropertyDetails(${p.id})">View</button>
                     <button class="btn favorite-btn ${isFavorite(p.id) ? 'active' : ''}" 
                             onclick="toggleFav(${p.id}, event)">❤️</button>
                 </div>
@@ -256,10 +255,6 @@ function clearErrors() {
     });
 }
 
-function viewPropertyDetails(id) {
-    window.location.href = `property-details.html?id=${id}`;
-}
-
 function displayProperttyDetails() {
     const id = new URLSearchParams(window.location.search).get('id');
     const prop = getPropertyById(parseInt(id));
@@ -283,7 +278,31 @@ function displayProperttyDetails() {
 
 function toggleDetailsFavorite(propertyId) {
     toggleFavorite(propertyId);
-    const btn = event.currentTarget;
-    if (btn) {
-        btn.classList.toggle('active');
-    }
+    const btn = event.target;
+    btn.classList.toggle('active');
+    btn.textContent = isFavorite(id) ? '❤️ Saved' : '❤️ Save';
+}
+
+function toggleFav(id, e) {
+    toggleFavorite(id);
+    e.target.classList.toggle('active');
+}
+
+function handleInquiry(e, id) {
+    e.preventDefault();
+    const form = e.target;
+    const [name, email, msg] = [...form.querySelectorAll('input, textarea')].map(el => el.value);
+
+    let inquiries = JSON.parse(localStorage.getItem('inquiries')) || [];
+    inquiries.push({
+        id: Date.now(),
+        propertyId: id,
+        propertyTitle: getPropertyById(id).title,
+        name, email, msg,
+        date: new Date().toLocaleString()
+    });
+    localStorage.setItem('inquiries', JSON.stringify(inquiries));
+
+    alert('Inquiry sent!');
+    form.reset();
+}

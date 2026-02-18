@@ -1,3 +1,12 @@
+:root {
+  --primary-color: #4f46e5;
+  --secondary-color: #6b7280;
+  --dark-text: #1f2937;
+  --white: #ffffff;
+  --light-bg: #f3f4f6;
+  --border-color: #e5e7eb;
+}
+
 html {
     scroll-behavior: smooth;
     background: url('https://i.pinimg.com/1200x/4d/20/b8/4d20b86d6d63c05d345624074bf8492c.jpg') no-repeat center center fixed;
@@ -85,13 +94,13 @@ h1.logo {
 }
 
 a {
-    color: var(--primary-color);
+    color: black;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #1d4ed8;
+    color: #d81d1d;
     text-decoration: wavy underline;
 }
 
@@ -239,4 +248,10 @@ form {
 .footer p {
     color: var(--white);
     margin: 0;
+}
+
+@media (max-width: 768px) {
+  .nav-links { flex-direction: column; }
+  .container { max-width: 100%; padding: 1em; }
+  .properties-grid { grid-template-columns: 1fr; }
 }
