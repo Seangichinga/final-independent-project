@@ -43,10 +43,6 @@ function isFavorite(propertyId) {
     return favorites.includes(propertyId);
 }
 
-function getPropertyById(propertyId) {
-    return allProperties.find(p => p.id === propertyId) || null;
-}
-
 // event listeners
 function setupEventListeners() {
     //search
@@ -80,6 +76,7 @@ function setupEventListeners() {
     }
 }
 
+// display functions
 function displayBrowsePage() {
     displayProperties(allProperties);
 }
@@ -144,6 +141,7 @@ if (noMsg) noMsg.style.display = 'none';
     });
 }
 
+// more event handlers
 function handleSearch() {
     const term = document.getElementById('searchInput').value.toLowerCase();
     const filtered = allProperties.filter(p =>
@@ -174,6 +172,7 @@ function handleReset() {
     displayBrowsePage();
 }
 
+// form handling
 function handleFormSubmit(e) {
     e.preventDefault();
 
@@ -203,7 +202,7 @@ function handleFormSubmit(e) {
         }, 3000);
     }
 }
-
+// validation Implementation instead of HTML validation
 function validateForm() {
     let isValid = true;
     clearErrors();
@@ -244,5 +243,3 @@ function toggleFav(id, e) {
     toggleFavorite(id);
     e.target.classList.toggle('active');
 }
-
-document.addEventListener('DOMContentLoaded', initApp);
